@@ -1,0 +1,15 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1711466558
+default_env.tres::Environment::-1::1711380428::0::1::::<><>::
+icon.png::CompressedTexture2D::3068112121506352623::1711380428::1711380433::1::::<><>::
+ShaderTestScene.tscn::PackedScene::963168979490904568::1711411726::0::1::::<><>::uid://b1dxtn04iuvlr::::res://Materials/BasicTexturesMaterial.tres
+::res://addons/::1711380428
+::res://Materials/::1711413734
+BasicTexturesMaterial.tres::ShaderMaterial::4218954895214735067::1711413734::0::1::::<><>::uid://bnipb73wvba0q::::res://Shaders/Basic_Textures.tres<>uid://cek0llmhskyxm::::res://Textures/Rock_Albedo.png<>uid://ddvtxwoww4a82::::res://Textures/Rock_NormalMap.png<>uid://cv368hd1fsbrm::::res://Textures/Rock_Roughness.png
+::res://Shaders/::1711413734
+Basic_Textures.tres::VisualShader::3316304938734812922::1711413734::0::1::::<><>::
+::res://Textures/::1711411029
+Rock_Albedo.png::CompressedTexture2D::5075778684668073034::1711401185::1711411029::1::::<><>::
+Rock_Height.png::CompressedTexture2D::6782206605457200974::1711401186::1711411029::1::::<><>::
+Rock_NormalMap.png::CompressedTexture2D::7414376389122115717::1711401186::1711411029::1::::<><>::
+Rock_Roughness.png::CompressedTexture2D::6306551192359754034::1711401186::1711411029::1::::<><>::

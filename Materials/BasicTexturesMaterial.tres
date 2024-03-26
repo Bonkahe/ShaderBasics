@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://b1dxtn04iuvlr"]
+
+[ext_resource type="Shader" uid="uid://bnipb73wvba0q" path="res://Shaders/Basic_Textures.tres" id="1_t724t"]
+[ext_resource type="Texture2D" uid="uid://cek0llmhskyxm" path="res://Textures/Rock_Albedo.png" id="2_0gg4q"]
+[ext_resource type="Texture2D" uid="uid://ddvtxwoww4a82" path="res://Textures/Rock_NormalMap.png" id="3_ptndq"]
+[ext_resource type="Texture2D" uid="uid://cv368hd1fsbrm" path="res://Textures/Rock_Roughness.png" id="4_f5wuk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_t724t")
+shader_parameter/HeightPower = null
+shader_parameter/Offset = Vector2(0, -0.7)
+shader_parameter/Lod = 0.0
+shader_parameter/RoughnessPower = 1.0
+shader_parameter/NormalMapPower = 1.0
+shader_parameter/Albedo = ExtResource("2_0gg4q")
+shader_parameter/Roughness = ExtResource("4_f5wuk")
+shader_parameter/NormalMap = ExtResource("3_ptndq")
