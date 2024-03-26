@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=20 format=3 uid="uid://bnipb73wvba0q"]
+[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://bnipb73wvba0q"]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_kn8jv"]
 parameter_name = "Roughness"
@@ -46,35 +46,10 @@ step = 1.0
 expanded_output_ports = [0]
 source = 5
 
-[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_1al1g"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0, 0, 0)]
-op_type = 2
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_7byva"]
-input_name = "vertex"
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_omu82"]
-input_name = "normal"
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_eg4r7"]
-expanded_output_ports = [0]
-source = 5
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_0lk7l"]
-parameter_name = "HeightMap"
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lggme"]
-operator = 2
-
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_6psi0"]
-parameter_name = "HeightPower"
-
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform sampler2D HeightMap;
-uniform float HeightPower;
 uniform vec2 Offset;
 uniform float Lod : hint_range(0, 10, 1);
 uniform sampler2D Albedo : source_color, repeat_enable;
@@ -84,39 +59,6 @@ uniform sampler2D NormalMap : hint_normal, repeat_enable;
 uniform float NormalMapPower = 1;
 
 
-
-void vertex() {
-	vec4 n_out5p0;
-// Texture2D:5
-	n_out5p0 = texture(HeightMap, UV);
-	float n_out5p1 = n_out5p0.r;
-
-
-// FloatParameter:8
-	float n_out8p0 = HeightPower;
-
-
-// FloatOp:7
-	float n_out7p0 = n_out5p1 * n_out8p0;
-
-
-// Input:4
-	vec3 n_out4p0 = NORMAL;
-
-
-// Input:3
-	vec3 n_out3p0 = VERTEX;
-
-
-// MultiplyAdd:2
-	vec3 n_out2p0 = fma(vec3(n_out7p0), n_out4p0, n_out3p0);
-
-
-// Output:0
-	VERTEX = n_out2p0;
-
-
-}
 
 void fragment() {
 // Vector2Parameter:16
@@ -169,23 +111,8 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-272.624, -176.176)
+graph_offset = Vector2(-368.624, -85.176)
 nodes/vertex/0/position = Vector2(760, 140)
-nodes/vertex/2/node = SubResource("VisualShaderNodeMultiplyAdd_1al1g")
-nodes/vertex/2/position = Vector2(520, 140)
-nodes/vertex/3/node = SubResource("VisualShaderNodeInput_7byva")
-nodes/vertex/3/position = Vector2(60, 260)
-nodes/vertex/4/node = SubResource("VisualShaderNodeInput_omu82")
-nodes/vertex/4/position = Vector2(60, 160)
-nodes/vertex/5/node = SubResource("VisualShaderNodeTexture_eg4r7")
-nodes/vertex/5/position = Vector2(60, -220)
-nodes/vertex/6/node = SubResource("VisualShaderNodeTexture2DParameter_0lk7l")
-nodes/vertex/6/position = Vector2(-360, -260)
-nodes/vertex/7/node = SubResource("VisualShaderNodeFloatOp_lggme")
-nodes/vertex/7/position = Vector2(382.681, -119.215)
-nodes/vertex/8/node = SubResource("VisualShaderNodeFloatParameter_6psi0")
-nodes/vertex/8/position = Vector2(60, -20)
-nodes/vertex/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 2, 2, 4, 0, 2, 1, 6, 0, 5, 2, 5, 1, 7, 0, 7, 0, 2, 0, 8, 0, 7, 1)
 nodes/fragment/0/position = Vector2(840, 240)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_fbgop")
 nodes/fragment/2/position = Vector2(320, 200)

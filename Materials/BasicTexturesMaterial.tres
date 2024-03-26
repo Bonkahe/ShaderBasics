@@ -8,8 +8,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_t724t")
-shader_parameter/HeightPower = null
-shader_parameter/Offset = Vector2(0, -0.7)
+shader_parameter/Offset = Vector2(0, 0)
 shader_parameter/Lod = 0.0
 shader_parameter/RoughnessPower = 1.0
 shader_parameter/NormalMapPower = 1.0
