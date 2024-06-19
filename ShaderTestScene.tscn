@@ -1,7 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://nytit0hctog3"]
+[gd_scene load_steps=19 format=3 uid="uid://nytit0hctog3"]
 
 [ext_resource type="Material" uid="uid://b1dxtn04iuvlr" path="res://Materials/BasicTexturesMaterial.tres" id="1_5ru45"]
-[ext_resource type="Shader" uid="uid://b4n1i1lru32mx" path="res://Hologram.tres" id="2_5yco8"]
+[ext_resource type="Shader" uid="uid://b4n1i1lru32mx" path="res://Shaders/Hologram.tres" id="2_5yco8"]
+[ext_resource type="Shader" uid="uid://bam7pi2gvytmi" path="res://Shaders/Vertex_Displacement.tres" id="3_bfi1g"]
+[ext_resource type="Texture2D" uid="uid://cek0llmhskyxm" path="res://Textures/Rock_Albedo.png" id="4_necvt"]
+[ext_resource type="Texture2D" uid="uid://c3vl7mnpa7ax7" path="res://Textures/Rock_Height.png" id="5_2trya"]
+[ext_resource type="Texture2D" uid="uid://ddvtxwoww4a82" path="res://Textures/Rock_NormalMap.png" id="6_v4bnf"]
+[ext_resource type="Texture2D" uid="uid://cv368hd1fsbrm" path="res://Textures/Rock_Roughness.png" id="7_n4vln"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rkaw"]
 sky_top_color = Color(0.223529, 0.466667, 0.564706, 1)
@@ -66,14 +71,25 @@ normal_texture = SubResource("NoiseTexture2D_6sfdl")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8bta"]
 render_priority = 0
 shader = ExtResource("2_5yco8")
-shader_parameter/Base_Color = Color(0.262745, 0.611765, 0.815686, 1)
-shader_parameter/Proximity_Fade_Alpha = 0.2
-shader_parameter/Scanline_Width = 500.0
-shader_parameter/Scanline_Speed = 15.0
-shader_parameter/Scanline_CenterWeight = 0.02
-shader_parameter/Proximity_Highlight = 0.3
-shader_parameter/Fresnel_Power = 2.0
-shader_parameter/Emission_Brightness = 20.0
+shader_parameter/Base_Color = Color(0.409772, 0.568594, 0.178703, 1)
+shader_parameter/Proximity_Fade_Alpha = 0.485
+shader_parameter/Scanline_Width = 78.99
+shader_parameter/Scanline_Speed = 3.725
+shader_parameter/Scanline_CenterWeight = 0.095
+shader_parameter/Proximity_Highlight = 0.425
+shader_parameter/Fresnel_Power = 3.585
+shader_parameter/Emission_Brightness = 30.88
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc4q2"]
+render_priority = 0
+shader = ExtResource("3_bfi1g")
+shader_parameter/DisplacementValue = 0.169
+shader_parameter/RoughnessPower = 0.8
+shader_parameter/NormalMapPower = 3.0
+shader_parameter/Heightmap = ExtResource("5_2trya")
+shader_parameter/Albedo = ExtResource("4_necvt")
+shader_parameter/Roughness = ExtResource("7_n4vln")
+shader_parameter/NormalMap = ExtResource("6_v4bnf")
 
 [node name="ShaderTestScene" type="Node3D"]
 
@@ -89,32 +105,64 @@ directional_shadow_max_distance = 10.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vunpk")
 
-[node name="TestSphere" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.709796, 0)
+[node name="TextureExample" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.0715518, 0)
+visible = false
+
+[node name="TestSphere" type="MeshInstance3D" parent="TextureExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638244, 0)
 mesh = SubResource("SphereMesh_hk7oa")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_5ru45")
 
-[node name="TestSphereBase" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.602229, 0, 0, 0, 0.602229, 0, 0, 0, 0.602229, 5, 0.29961, 0)
+[node name="TestSphereBase" type="MeshInstance3D" parent="TextureExample"]
+transform = Transform3D(0.602229, 0, 0, 0, 0.602229, 0, 0, 0, 0.602229, 0, 0.228058, 0)
 mesh = SubResource("TorusMesh_khcli")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_5ru45")
 
-[node name="Platform" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.0715518, 0)
+[node name="Platform" type="MeshInstance3D" parent="TextureExample"]
 mesh = SubResource("CylinderMesh_1tuva")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_q02fq")
 
-[node name="TestSphere2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0182884, 0.259537, -0.331683)
+[node name="MathExample" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.0715518, 0)
+visible = false
+
+[node name="TestSphere" type="MeshInstance3D" parent="MathExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550084, 0)
 mesh = SubResource("SphereMesh_hk7oa")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_g8bta")
 
-[node name="TestSphereBase2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.602229, 0, 0, 0, 0.602229, 0, 0, 0, 0.602229, 0, 0.29961, 0)
+[node name="TestSphereBase" type="MeshInstance3D" parent="MathExample"]
+transform = Transform3D(0.602229, 0, 0, 0, 0.602229, 0, 0, 0, 0.602229, 0, 0.228058, 0)
 mesh = SubResource("TorusMesh_khcli")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_5ru45")
 
-[node name="Platform2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0715518, 0)
+[node name="Platform" type="MeshInstance3D" parent="MathExample"]
 mesh = SubResource("CylinderMesh_1tuva")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_q02fq")
+
+[node name="DisplacementExample" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0715518, 0)
+
+[node name="TestSphere" type="MeshInstance3D" parent="DisplacementExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.940063, 0)
+mesh = SubResource("SphereMesh_hk7oa")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_sc4q2")
+
+[node name="TestSphereBase" type="MeshInstance3D" parent="DisplacementExample"]
+transform = Transform3D(0.602229, 0, 0, 0, 0.602229, 0, 0, 0, 0.602229, 0, 0.228058, 0)
+mesh = SubResource("TorusMesh_khcli")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_5ru45")
+
+[node name="Platform" type="MeshInstance3D" parent="DisplacementExample"]
+mesh = SubResource("CylinderMesh_1tuva")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_q02fq")

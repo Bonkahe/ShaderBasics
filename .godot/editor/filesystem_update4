@@ -1,0 +1,5 @@
+res://ShaderTestScene.tscn
+res://Shaders/Basic_Textures.tres
+res://Materials/BasicTexturesMaterial.tres
+res://Shaders/Hologram.tres
+res://Shaders/Vertex_Displacement.tres
