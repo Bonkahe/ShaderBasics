@@ -83,8 +83,8 @@ shader_parameter/Emission_Brightness = 30.88
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sc4q2"]
 render_priority = 0
 shader = ExtResource("3_bfi1g")
-shader_parameter/DisplacementValue = 0.169
-shader_parameter/RoughnessPower = 0.8
+shader_parameter/DisplacementValue = 0.25
+shader_parameter/RoughnessPower = 0.75
 shader_parameter/NormalMapPower = 3.0
 shader_parameter/Heightmap = ExtResource("5_2trya")
 shader_parameter/Albedo = ExtResource("4_necvt")
